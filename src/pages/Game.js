@@ -47,21 +47,36 @@ class Game extends Component {
     this.countDown();
   }
 
-  countDown = () => {
-    const ONE_SECOND = 1000;
-    const TOTAL_TIME = 30000;
+  // componentWillUnmount() {
+  //   const { timer } = this.state;
+  //   if (timer === 0) {
+  //     clearClock(this.clock);
+  //   }
+  // }
 
-    this.clock = setInterval(() => {
-      this.setState((prevState) => ({
-        timer: prevState.timer - 1,
-      }));
-    }, ONE_SECOND);
+  // countDown = () => {
+  //   const ONE_SECOND = 1000;
+  //   const TOTAL_TIME = 30000;
+  //   this.clock = setInterval(() => {
+  //     this.setState((prevState) => ({
+  //       timer: prevState.timer === 0 ? TOTAL_TIME : prevState.timer - 1,
+  //     }));
+  // }, ONE_SECOND);
 
-    setTimeout(() => {
-      this.handleOnUserAnswer(false);
-      clearInterval(this.clock);
-    }, TOTAL_TIME);
-  }
+    countDown = () => {
+      const ONE_SECOND = 1000;
+      const TOTAL_TIME = 30000;
+      this.clock = setInterval(() => {
+        this.setState((prevState) => ({
+          timer: prevState.timer - 1,
+        }));
+      }, ONE_SECOND);
+
+      setTimeout(() => {
+        this.handleOnUserAnswer(false);
+        clearInterval(this.clock);
+      }, TOTAL_TIME);
+    }
 
   saveQuestionsInState = (results) => {
     const questions = results.map(({
